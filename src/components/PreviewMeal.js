@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 
 class PreviewMeal extends React.Component {
   removeMeal = () => {
-    const { id, dispatch } = this.props
-    dispatch({ type: 'REMOVE', item: { id: id } })
+    const { id, dispatch, dietaries } = this.props
+    dispatch({ type: 'REMOVE', item: { id: id, dietaries: dietaries } })
   }
 
   render() {

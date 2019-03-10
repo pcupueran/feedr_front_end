@@ -5,8 +5,10 @@ import styled from 'styled-components'
 
 class Meal extends React.Component {
   previewMeal = () => {
-    const { id, dispatch, previewed } = this.props
-    if (!previewed) { dispatch({ type: 'SELECT', item: { id: id } }) }
+    const { id, dispatch, previewed, dietaries } = this.props
+    if (!previewed) { 
+      dispatch({ type: 'SELECT', item: { id: id, dietaries: dietaries } }) 
+    }
   }
 
   render() {

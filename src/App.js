@@ -3,10 +3,11 @@ import './App.css';
 import items from './items'
 import Meal from './components/Meal'
 import PreviewMeal from './components/PreviewMeal'
+import Dietary from './components/Dietary'
 import { connect } from 'react-redux'
 
 const App = (props) => {
-  const { previewedMeals } = props
+  const { previewedMeals, dietaries } = props
 
   return (
     <div className="wrapper">
@@ -17,9 +18,9 @@ const App = (props) => {
               <span>{ previewedMeals.length } items</span>
             </div>
             <div className="col-6 menu-summary-right">
-              6x <span className="dietary">ve</span>
-              4x <span className="dietary">v</span>
-              12x <span className="dietary">n!</span>
+              { Object.keys(dietaries).map( (dietary, index) => 
+                <span key={ index }>{ dietaries[dietary] }x<Dietary  name={ dietary }>{ dietaries[dietary] }</Dietary></span> ) 
+              }
             </div>
           </div>
         </div>
@@ -49,6 +50,7 @@ const App = (props) => {
 
 export default connect(({ meals }) => {
   return {
-    previewedMeals: meals.previewed
+    previewedMeals: meals.previewed,
+    dietaries: meals.dietaries
   }
 })(App);
