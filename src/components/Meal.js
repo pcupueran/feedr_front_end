@@ -1,16 +1,29 @@
 import React from 'react';
 import Dietary from './Dietary'
+import { connect } from 'react-redux'
 
-export default class Meal extends React.Component {
+class Meal extends React.Component {
+  previewMeal = () => {
+    const { id, dispatch, previewed } = this.props
+    if (!previewed) { dispatch({ type: 'SELECT', item: { id: id } }) }
+  }
+
   render() {
-    const { name, dietaries } = this.props
+    const { name, dietaries, children } = this.props
     return (
-      <li className="item">
+      <li className="item" onClick={ this.previewMeal }>
         <h2>{ name }</h2>
         <p>
-          { dietaries.map(dietary => <Dietary name={ dietary } />) }
+          { dietaries.map((dietary, index) => <Dietary key={ index } name={ dietary } />) }
         </p>
+        { children }
       </li>
     );
   }
 }
+
+export default connect(({ meals }, ownProps) => {
+  return {
+    previewed: meals.previewed.includes(ownProps.id)
+  }
+})(Meal)
