@@ -2,7 +2,7 @@ import React from 'react';
 import Meal from './Meal'
 import { connect } from 'react-redux'
 
-class PreviewMeal extends React.Component {
+class PreviewedMeal extends React.Component {
   removeMeal = () => {
     const { id, dispatch, dietaries } = this.props
     dispatch({ type: 'REMOVE', item: { id: id, dietaries: dietaries } })
@@ -18,4 +18,4 @@ class PreviewMeal extends React.Component {
   }
 }
 
-export default connect()(PreviewMeal)
+export default connect()(PreviewedMeal)

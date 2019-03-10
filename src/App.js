@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import items from './items'
 import Meal from './components/Meal'
-import PreviewMeal from './components/PreviewMeal'
+import PreviewedMeal from './components/PreviewedMeal'
 import Dietary from './components/Dietary'
 import { connect } from 'react-redux'
 
@@ -37,7 +37,7 @@ const App = (props) => {
             <ul className="menu-preview">
               { previewedMeals.map( (previewedMealId, index) => {
                   let item = items.find( item => item.id === previewedMealId )
-                  return (<PreviewMeal key={ index } name={ item.name } dietaries={ item.dietaries } id={ item.id } />)
+                  return (<PreviewedMeal key={ index } name={ item.name } dietaries={ item.dietaries } id={ item.id } />)
                 })
               }
             </ul>
