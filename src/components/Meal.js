@@ -1,6 +1,7 @@
 import React from 'react';
 import Dietary from './Dietary'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
 
 class Meal extends React.Component {
   previewMeal = () => {
@@ -9,18 +10,24 @@ class Meal extends React.Component {
   }
 
   render() {
-    const { name, dietaries, children } = this.props
+    const { name, dietaries, previewed, children } = this.props
     return (
-      <li className="item" onClick={ this.previewMeal }>
+      <MealItem previewed={ previewed } className="item" onClick={ this.previewMeal }>
         <h2>{ name }</h2>
         <p>
           { dietaries.map((dietary, index) => <Dietary key={ index } name={ dietary } />) }
         </p>
         { children }
-      </li>
+      </MealItem>
     );
   }
 }
+
+const MealItem = styled.li `
+  &.item {
+    background: ${ props =>  props.previewed ? '#51ad511f' : 'white' }
+  }
+`
 
 export default connect(({ meals }, ownProps) => {
   return {
